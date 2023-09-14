@@ -9,18 +9,19 @@
 }
 
 #app > img {
-    width: 64px;
+    width: 100px;
 }
 
 #app > h2 {
     align-self: flex-start;
-    margin-top: 104px;
+    margin-top: 70px;
 }
 
 #app > p {
     align-self: flex-start;
     text-align: justify;
     width: 512px;
+    margin-top: -5px;
 }
 
 #app .placeholder {
