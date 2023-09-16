@@ -14,17 +14,27 @@ app.listen()
 
 
 app.get('/summary/:id', async (req = request, res = response) => {
-    await download(req.params.id);
-    const audioConverted = await convert()
-    console.log(audioConverted)
-
-    const result = await transcribe(audioConverted);
-    res.json({result})
+    try{
+        await download(req.params.id);
+        const audioConverted = await convert()
+        console.log(audioConverted)
+    
+        const result = await transcribe(audioConverted);
+        res.json({result})
+    } catch (error) {
+        console.log(error)
+        return res.json({error})
+    }
 });
 
 app.post("/summary", async (req = request, res = response) => {
-    const result = await summarize(req.body.text)
-    return res.json({result})
+    try{
+        const result = await summarize(req.body.text)
+        return res.json({result})
+    } catch (error) {
+        console.log(error)
+        return res.json({ error })
+    }
 })
 
 app.listen(3333, () => console.log(

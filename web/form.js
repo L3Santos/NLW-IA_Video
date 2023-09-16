@@ -38,6 +38,7 @@ form.addEventListener("submit", async (e) => {
     const summary = await server.post("/summary/", {
         text: transcription.data.result,
     });
+    
     content.textContent = summary.data.result;
     content.classList.remove("placeholder");
     
