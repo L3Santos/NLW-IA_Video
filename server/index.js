@@ -5,6 +5,7 @@ import express, { request, response } from 'express';
 import { download } from './download.js';
 import { transcribe } from './transcribe.js';
 import { summarize } from './summarize.js';
+import { convert } from './convert.js';
 
 const app = express();
 app.use(express.json())
@@ -14,8 +15,10 @@ app.listen()
 
 app.get('/summary/:id', async (req = request, res = response) => {
     await download(req.params.id);
-    const result = await transcribe();
+    const audioConverted = await convert()
+    console.log(audioConverted)
 
+    const result = await transcribe(audioConverted);
     res.json({result})
 });
 
